@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Market Prices</title>
+</head>
+<body>
+    <h1>Latest Market Prices</h1>
+    <form action="/farmer/market-prices" method="get">
+        <label for="crop">Select Crop:</label>
+        <input type="text" id="crop" name="crop" placeholder="Enter Crop Name" required>
+        <button type="submit">Get Prices</button>
+    </form>
+
+    <div th:if="${price}">
+        <h2>Prices for <span th:text="${cropName}"></span></h2>
+        <p>Price per Kg: <span th:text="${price}"></span></p>
+    </div>
+</body>
+</html>

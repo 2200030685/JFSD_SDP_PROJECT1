@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles for Farmers</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #d2eaff, #ffffff);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Article List */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #fff;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        /* Article Links */
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sticker Images */
+        .sticker {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Add visual spacing */
+        .article-item {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Popular Farming Articles</h1>
+    <div class="container">
+        <ul id="articlesList"></ul>
+    </div>
+
+    <script>
+        async function fetchArticles() {
+            try {
+                const response = await fetch('/api/articles');
+                const articles = await response.json();
+                const articlesList = document.getElementById('articlesList');
+
+                articles.forEach(article => {
+                    const listItem = document.createElement('li');
+                    
+                    // Create an image (sticker) element
+                    const stickerImg = document.createElement('img');
+                    stickerImg.classList.add('sticker');
+                    stickerImg.src = 'https://img.icons8.com/color/48/000000/tractor.png'; // Example farm sticker
+                    stickerImg.alt = 'Sticker';
+
+                    // Create the link and assemble it
+                    listItem.classList.add('article-item');
+                    listItem.appendChild(stickerImg);
+                    const link = document.createElement('a');
+                    link.href = article.url;
+                    link.target = "_blank";
+                    link.innerText = article.title;
+
+                    listItem.appendChild(link);
+                    articlesList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error("Error loading articles", error);
+            }
+        }
+
+        fetchArticles();
+    </script>
+</body>
+</html>

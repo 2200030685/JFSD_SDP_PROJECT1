@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Farmer</title>
+</head>
+<body>
+    <h1>Add Farmer</h1>
+    <form action="/admin/add-farmer" method="post">
+        <label>Full Name: </label>
+        <input type="text" name="name" required><br><br>
+        
+        <label>Email: </label>
+        <input type="email" name="email" required><br><br>
+        
+        <label>Password: </label>
+        <input type="password" name="password" required><br><br>
+        
+        <label>Phone Number: </label>
+        <input type="text" name="phone"><br><br>
+        
+        <button type="submit">Add Farmer</button>
+    </form>
+</body>
+</html>

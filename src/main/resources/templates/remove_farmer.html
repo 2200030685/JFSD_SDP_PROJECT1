@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Remove Farmer</title>
+</head>
+<body>
+    <h1>Remove Farmer</h1>
+    <form action="/admin/remove-farmer" method="post">
+        <label>Farmer Email: </label>
+        <input type="email" name="email" required><br><br>
+
+        <button type="submit">Remove Farmer</button>
+    </form>
+
+    <!-- Display messages -->
+    <p th:if="${message}" th:text="${message}" style="color:green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+</body>
+</html>
